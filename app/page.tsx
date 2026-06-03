@@ -5,21 +5,52 @@ const focusItems = [
   "Documenting my progress on X and GitHub",
 ];
 
+const nowItems = [
+  "Building my personal profile site",
+  "Learning how to use Codex in a real GitHub workflow",
+  "Exploring AI tools for law, research, and creative workflows",
+  "Documenting my build-in-public journey on X",
+];
+
+const learningTopics = [
+  {
+    title: "Frontend basics",
+    description: "HTML, CSS, JavaScript, React, and Next.js fundamentals.",
+  },
+  {
+    title: "AI coding workflow",
+    description: "Using Codex to plan, edit, debug, and ship small projects.",
+  },
+  {
+    title: "GitHub workflow",
+    description: "Repos, commits, pull/push, conflicts, and deployment.",
+  },
+  {
+    title: "Product thinking",
+    description:
+      "Understanding real problems, users, workflows, and useful tools.",
+  },
+];
+
 const projects = [
   {
     title: "Profile Site",
+    status: "Live / Building",
     description: "Personal homepage and build-in-public base.",
   },
   {
     title: "AI Tools Collection",
+    status: "Next project",
     description: "Coming soon.",
   },
   {
     title: "AI Learning Log Generator",
+    status: "Planned",
     description: "Coming soon.",
   },
   {
     title: "Research / Information Collection Tool",
+    status: "Planned",
     description: "Coming soon.",
   },
 ];
@@ -27,6 +58,8 @@ const projects = [
 const learningLog = [
   "Day 1: Updated X profile and posted my first build-in-public tweet.",
   "Day 2: Built the first version of my personal homepage and pushed it to GitHub.",
+  "Day 3: Deployed the homepage to Vercel.",
+  "Day 4: Improving the homepage content and structure.",
 ];
 
 export default function Home() {
@@ -82,6 +115,18 @@ export default function Home() {
         </section>
 
         <section className="grid gap-6 md:grid-cols-[0.35fr_0.65fr]">
+          <h2 className="text-2xl font-semibold text-white">⚡ Now</h2>
+          <ul className="space-y-3 text-zinc-300">
+            {nowItems.map((item) => (
+              <li className="flex gap-3" key={item}>
+                <span className="mt-2 size-1.5 flex-none rounded-full bg-cyan-300" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="grid gap-6 md:grid-cols-[0.35fr_0.65fr]">
           <h2 className="text-2xl font-semibold text-white">
             🔍 Current Focus
           </h2>
@@ -95,6 +140,27 @@ export default function Home() {
           </ul>
         </section>
 
+        <section className="grid gap-6">
+          <h2 className="text-2xl font-semibold text-white">
+            📚 What I’m Learning
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {learningTopics.map((topic) => (
+              <article
+                className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-5"
+                key={topic.title}
+              >
+                <h3 className="text-lg font-semibold text-white">
+                  {topic.title}
+                </h3>
+                <p className="mt-3 leading-7 text-zinc-400">
+                  {topic.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="projects" className="grid gap-6">
           <div className="flex items-end justify-between gap-4">
             <h2 className="text-2xl font-semibold text-white">🛠️ Projects</h2>
@@ -106,9 +172,14 @@ export default function Home() {
                 className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-5 transition hover:border-zinc-700 hover:bg-zinc-900"
                 key={project.title}
               >
-                <h3 className="text-lg font-semibold text-white">
-                  {project.title}
-                </h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 className="text-lg font-semibold text-white">
+                    {project.title}
+                  </h3>
+                  <span className="rounded-full border border-cyan-300/30 px-2.5 py-1 text-xs font-medium text-cyan-200">
+                    {project.status}
+                  </span>
+                </div>
                 <p className="mt-3 leading-7 text-zinc-400">
                   {project.description}
                 </p>
