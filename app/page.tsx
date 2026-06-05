@@ -34,14 +34,25 @@ const learningTopics = [
 
 const projects = [
   {
+    label: "Project #1",
     title: "Profile Site",
     status: "Live / Building",
     description: "Personal homepage and build-in-public base.",
   },
   {
+    label: "Project #2",
     title: "AI Tools Collection",
-    status: "Next project",
-    description: "Coming soon.",
+    status: "Shipped v1",
+    description:
+      "A personal map of the tools I actually use while learning AI, building small projects, and documenting the journey.",
+    features: [
+      "Personal tool cards",
+      "Search",
+      "Category filter",
+      "Status filter",
+    ],
+    liveUrl: "https://ai-tools-collection.vercel.app/",
+    repoUrl: "https://github.com/SenmuuuuW/ai-tools-collection",
   },
   {
     title: "AI Learning Log Generator",
@@ -60,6 +71,7 @@ const learningLog = [
   "Day 2: Built the first version of my personal homepage and pushed it to GitHub.",
   "Day 3: Deployed the homepage to Vercel.",
   "Day 4: Improving the homepage content and structure.",
+  "Day 5: Shipped Project #2 v1: AI Tools Collection.",
 ];
 
 export default function Home() {
@@ -172,6 +184,11 @@ export default function Home() {
                 className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-5 transition hover:border-zinc-700 hover:bg-zinc-900"
                 key={project.title}
               >
+                {project.label ? (
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-300">
+                    {project.label}
+                  </p>
+                ) : null}
                 <div className="flex flex-wrap items-center gap-3">
                   <h3 className="text-lg font-semibold text-white">
                     {project.title}
@@ -183,6 +200,42 @@ export default function Home() {
                 <p className="mt-3 leading-7 text-zinc-400">
                   {project.description}
                 </p>
+                {project.features ? (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.features.map((feature) => (
+                      <span
+                        className="rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-zinc-300"
+                        key={feature}
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                {project.liveUrl || project.repoUrl ? (
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    {project.liveUrl ? (
+                      <a
+                        className="rounded-lg border border-zinc-700 px-3 py-2 text-sm font-medium text-zinc-200 transition hover:border-cyan-300 hover:text-white"
+                        href={project.liveUrl}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Live Demo
+                      </a>
+                    ) : null}
+                    {project.repoUrl ? (
+                      <a
+                        className="rounded-lg border border-zinc-700 px-3 py-2 text-sm font-medium text-zinc-200 transition hover:border-cyan-300 hover:text-white"
+                        href={project.repoUrl}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        GitHub Repo
+                      </a>
+                    ) : null}
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
